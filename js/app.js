@@ -14,6 +14,8 @@ $(document).ready(function(){
 
 });
 
+document.onload = newGame();
+
 //create event handler for NEW
 var ham = document.getElementsByClassName("new");
 var stuff = ham[0];
@@ -22,6 +24,8 @@ stuff.addEventListener("click",function(event) {
 	// handler for li a class=new
 	console.log('new clicked');
 	newGame();
+
+
 });
 
 document.getElementById('guessButton').addEventListener("click",function(event) {
@@ -40,11 +44,18 @@ document.getElementById('guessButton').addEventListener("click",function(event) 
 function newGame() {
 	// reset the guess count/list
 	// this must be called on load as well
+	document.getElementById('guessList').innerHTML = '';
+
 	// call create number
+
+	var randomnumber=Math.floor(Math.random()*101);
+	console.log(randomnumber);
 };
 
 function createNumber() {
 	// generate random number 1 - 100
+	// var randomnumber=Math.floor(Math.random()*11);
+	// console.log(randomnumber);
 };
 
 function checkGuess () {
