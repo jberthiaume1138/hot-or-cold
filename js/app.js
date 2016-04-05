@@ -14,10 +14,13 @@ $(document).ready(function(){
 
 });
 
+
+
+
 document.onload = newGame();
 
 // --------- create event handler for the NEW button ------------
-// could more simply do this with jQuery like the repo did with .WHAT
+// could more simply do this with jQuery like the repository did with .what
 // TODO: find a more elegant way to do this with vanilla Javascript
 var ham = document.getElementsByClassName("new");
 var stuff = ham[0];
@@ -96,17 +99,19 @@ function checkGuess (guess) {
 
 function checkGuess (secretNumber) {
 
-	// grab user input from box, compare to createdNumber
+	// grab user input from box, process
 	var guess = document.getElementById('userGuess').value;
-	// user input validation for numbers only
+	// input validation for numbers only
 	// input validation for numbers BETWEEN 1-100
-
-
-	var delta = Math.abs(guess - secretNumber);
-	// store guesses in an array.
+	// input validation for repeat guess
+	
+	// store valid guesses in an array.
 	var listOfGuesses = [];
 	listOfGuesses.push(guess);
 
+	var delta = Math.abs(guess - secretNumber);
+
+	document.getElementById(guessList).innerHTML += '<li>' + guess + '</li>';
 
 	if (secretNumber = guess) {
 		console.log('success');
@@ -117,6 +122,7 @@ function checkGuess (secretNumber) {
 	}
 	else if (delta > 10 ) && (delta < 20) {
 		console.log('hot');
+		document.getElementById('feedback').value = 'hot';
 	}
 	else if (delta > 20 ) && (delta < 30) {
 		console.log('warm');
@@ -136,8 +142,6 @@ function checkGuess (secretNumber) {
 	else if (delta > 70 ) && (delta < 80) {
 		console.log('Ice Planet Hoth');
 	}
-
-
 };
 
 function success() {
