@@ -100,9 +100,20 @@ function checkGuess (guess) {
 function checkGuess (secretNumber) {
 
 	// grab user input from box, process
-	var guess = document.getElementById('userGuess').value;
+	var guess = document.getElementById('userGuess').val().trim();
 	// input validation for numbers only
+	if (!(IsNaN(parseInt(guess)) {
+		// it is a number
+
+		// check that it's not been used already
+		// then check that it's between 1 - 100
+	}
+	else {
+		alert('You must enter a new guess from 1-100');
+		return;
+	}
 	// input validation for numbers BETWEEN 1-100
+
 	// input validation for repeat guess
 	
 	// store valid guesses in an array.
