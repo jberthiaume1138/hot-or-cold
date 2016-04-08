@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -44,13 +43,17 @@ document.getElementById('guessButton').addEventListener("click",function(event) 
 	var guess = document.getElementById('userGuess').value;
 	console.log('you guessed ' + guess);
 
-	compareGuess(guess);
 	// if (validateGuess(guess) == true ) {	// validate the guess
 	// 	console.log('passes validation');
 	// 	listOfGuesses.push(guess);
 	// 	compareGuess(guess);
+	// 	document.getElementById('userGuess').value = '';
 	// }	
-	// console.log(validateGuess(guess));
+
+	compareGuess(guess);
+	document.getElementById('userGuess').value = '';
+
+	//console.log(validateGuess(guess));
 });
 
 function validateGuess(guess) {
@@ -75,44 +78,56 @@ function validateGuess(guess) {
 
 // compare the guess
 function compareGuess (guess) {
+	
+	document.getElementById('guessList').innerHTML += '<li>' + guess + '</li>';
+	document.getElementById('feedback').innerHTML = '';
+
+	listOfGuesses.push(guess);
+
 	var delta = Math.abs(guess - secretNumber);
 
-	document.getElementById('guessList').innerHTML += '<li>' + guess + '</li>';
-
-	if (secretNumber = guess) {
+	if (secretNumber == guess) {
 		console.log('success');
 		success();
 	}
 	else if (delta < 10) {
 		console.log('red hot');
+		document.getElementById('feedback').innerHTML = 'Red Hot';
 	}
 	else if ((delta > 10 ) && (delta < 20)) {
 		console.log('hot');
-		document.getElementById('feedback').value = 'hot';
+		document.getElementById('feedback').innerHTML = 'Hot';
 	}
 	else if ((delta > 20 ) && (delta < 30)) {
 		console.log('warm');
+		document.getElementById('feedback').innerHTML = 'Warm';
 	}
 	else if ((delta > 30 ) && (delta < 40)) {
-		console.log('room temperature')
+		console.log('room temperature');
+		document.getElementById('feedback').innerHTML = 'Room Temperature';
 	}
 	else if ((delta > 40 ) && (delta < 50)) {
 		console.log('cool');
+		document.getElementById('feedback').innerHTML = 'Cool';
 	}
 	else if ((delta > 50 ) && (delta < 60)) {
 		console.log('cold');
+		document.getElementById('feedback').innerHTML = 'Cold';
 	}
 	else if ((delta > 60 ) && (delta < 70)) {
 		console.log('frozen');
+		document.getElementById('feedback').innerHTML = 'Frozen';
 	}
 	else {
 		console.log('Ice Planet Hoth');
+		document.getElementById('feedback').innerHTML = 'Ice Planet Hoth';
 	}
 };
 
 function success() {
-	// tada
 	console.log('you win');
+	document.getElementById('feedback').innerHTML = 'Correct!!! You Win!!!';
+	document.getElementById('guessList').innerHTML += '<br/>' + listOfGuesses.length + ' total guesses';
 };
 
 
