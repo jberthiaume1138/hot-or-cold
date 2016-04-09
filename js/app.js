@@ -13,9 +13,7 @@ $(document).ready(function(){
 
 });
 
-//TODO: refactor to avoid use of global variable(s)
-
-
+(function () {
 
 var secretNumber;
 var listOfGuesses = [];
@@ -29,7 +27,7 @@ function newGame() {
 	document.getElementById('count').innerHTML = '0';
 	
 	secretNumber = Math.floor(Math.random()*101);	// generate random number 1 - 100
-	console.log(secretNumber);
+	// console.log(secretNumber);
 };
 
 // --------- event handler for the NEW button ------------
@@ -118,5 +116,7 @@ function success() {
 	document.getElementById('feedback').innerHTML = 'Correct!!! You Win!!!';
 	document.getElementById('guessList').innerHTML += '<br/>' + listOfGuesses.length + ' total guesses';
 };
+
+})();
 
 
