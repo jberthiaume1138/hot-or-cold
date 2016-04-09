@@ -54,20 +54,25 @@ function validateGuess(guess) {
 	if ((isNaN(parseInt(guess,10)))) {	// check that the guess is an integer
 		alert('You must enter a valid integer.');
 		document.getElementById('userGuess').value = '';
+		document.getElementById('feedback').innerHTML = 'Make your Guess!';
 		return false;
 	}
 	
 	if ((guess < 0) || (guess > 100)) {	// check that the guess is in the specified range
 		alert('You must enter an integer between 1 and 100 only.');
 		document.getElementById('userGuess').value = '';
+		document.getElementById('feedback').innerHTML = 'Make your Guess!';
 		return false;
 	}
 
-	// if (listOfGuesses.indexOf('guess')) {	// check that the guess is not a repeat guess
-	// 	alert('You already guessed that number, try again.')
-	// 	document.getElementById('userGuess').value = '';
-	// 	return false;
-	// }
+	// this is the part that's sorta broken
+	if (listOfGuesses.indexOf('guess')) {	// check that the guess is not a repeat guess
+		console.log(listOfGuesses.indexOf('guess'));
+		alert('You already guessed that number, try again.')
+		document.getElementById('userGuess').value = '';
+		document.getElementById('feedback').innerHTML = 'Make your Guess!';	// reset the feedback
+		return false;
+	}
 	return true;
 };
 
