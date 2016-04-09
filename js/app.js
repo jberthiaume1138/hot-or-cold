@@ -83,6 +83,7 @@ function compareGuess (guess) {
 	document.getElementById('feedback').innerHTML = '';
 
 	listOfGuesses.push(guess);
+	document.getElementById('count').innerHTML = listOfGuesses.length;
 
 	var delta = Math.abs(guess - secretNumber);
 
