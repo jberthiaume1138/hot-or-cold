@@ -47,8 +47,6 @@ document.getElementById('guessButton').addEventListener("click",function(event) 
 		compareGuess(guess);	// guess passes validation, proceed with compare
 	}
 	
-	console.log(validateGuess(guess));
-
 	document.getElementById('userGuess').value = '';	// done processing, clear the guess field for the next one
 });
 
@@ -59,7 +57,7 @@ function validateGuess(guess) {
 		return false;
 	}
 	
-	if (!((guess > 0) && (guess < 101))) {	// check that the guess is in the specified range
+	if ((guess < 0) || (guess > 100)) {	// check that the guess is in the specified range
 		alert('You must enter an integer between 1 and 100 only.');
 		document.getElementById('userGuess').value = '';
 		return false;
