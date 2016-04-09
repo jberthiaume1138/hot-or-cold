@@ -14,6 +14,9 @@ $(document).ready(function(){
 });
 
 //TODO: refactor to avoid use of global variable(s)
+
+
+
 var secretNumber;
 var listOfGuesses = [];
 
@@ -30,8 +33,6 @@ function newGame() {
 };
 
 // --------- event handler for the NEW button ------------
-// could simply do this with jQuery like the code from the repo did with .what ....... but....
-// TODO: figure out a more elegant way to do this with vanilla Javascript
 var listOfElements = document.getElementsByClassName('new');
 var newButton = listOfElements[0];
 newButton.addEventListener("click",function(event) {
@@ -40,13 +41,12 @@ newButton.addEventListener("click",function(event) {
 
 // ---------- event handler for button id = guessButton -----------------
 document.getElementById('guessButton').addEventListener("click",function(event) {
-	event.preventDefault();		// do I need this because the html element or type = submit?
+	event.preventDefault();
 	var guess = document.getElementById('userGuess').value;
 
 	if (validateGuess(guess) == true) {
 		compareGuess(guess);	// guess passes validation, proceed with compare
 	}
-	
 	document.getElementById('userGuess').value = '';	// done processing, clear the guess field for the next one
 });
 
@@ -65,14 +65,13 @@ function validateGuess(guess) {
 		return false;
 	}
 
-	// this is the part that's sorta broken
-	if (listOfGuesses.indexOf('guess')) {	// check that the guess is not a repeat guess
-		console.log(listOfGuesses.indexOf('guess'));
+	if (listOfGuesses.indexOf(guess) != -1) {	// check that the guess is not a repeat guess
 		alert('You already guessed that number, try again.')
 		document.getElementById('userGuess').value = '';
 		document.getElementById('feedback').innerHTML = 'Make your Guess!';	// reset the feedback
 		return false;
 	}
+
 	return true;
 };
 
@@ -119,6 +118,5 @@ function success() {
 	document.getElementById('feedback').innerHTML = 'Correct!!! You Win!!!';
 	document.getElementById('guessList').innerHTML += '<br/>' + listOfGuesses.length + ' total guesses';
 };
-
 
 
