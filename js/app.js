@@ -43,17 +43,13 @@ document.getElementById('guessButton').addEventListener("click",function(event) 
 	event.preventDefault();		// do I need this because the html element or type = submit?
 	var guess = document.getElementById('userGuess').value;
 
-	// if (validateGuess(guess) == true ) {	// validate the guess
-	// 	console.log('passes validation');
-	// 	listOfGuesses.push(guess);
-	// 	compareGuess(guess);
-	// 	document.getElementById('userGuess').value = '';
-	// }	
+	if (validateGuess(guess) == true) {
+		compareGuess(guess);	// guess passes validation, proceed with compare
+	}
+	
+	console.log(validateGuess(guess));
 
-	compareGuess(guess);
-	document.getElementById('userGuess').value = '';
-
-	//console.log(validateGuess(guess));
+	document.getElementById('userGuess').value = '';	// done processing, clear the guess field for the next one
 });
 
 function validateGuess(guess) {
@@ -69,14 +65,14 @@ function validateGuess(guess) {
 		return false;
 	}
 
-	if (listOfGuesses.indexOf('guess')) {	// check that the guess is not a repeat guess
-		alert('You already guessed that number, try again.')
-		document.getElementById('userGuess').value = '';
-		return false;
-	}
+	// if (listOfGuesses.indexOf('guess')) {	// check that the guess is not a repeat guess
+	// 	alert('You already guessed that number, try again.')
+	// 	document.getElementById('userGuess').value = '';
+	// 	return false;
+	// }
+	return true;
 };
 
-// compare the guess
 function compareGuess (guess) {
 	
 	document.getElementById('guessList').innerHTML += '<li>' + guess + '</li>';
