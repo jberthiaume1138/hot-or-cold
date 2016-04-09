@@ -16,10 +16,15 @@ $(document).ready(function(){
 //TODO: refactor to avoid use of global variable(s)
 var secretNumber;
 var listOfGuesses = [];
+
 document.onload = newGame();
 
 function newGame() {
-	document.getElementById('guessList').innerHTML = '';	// reset the lst of guesses	
+	document.getElementById('guessList').innerHTML = '';	// reset the lst of guesses
+	listOfGuesses.length = 0;	// empty the guess array
+	document.getElementById('feedback').innerHTML = 'Make your Guess!';	// reset the feedback
+	document.getElementById('count').innerHTML = '0';
+	
 	secretNumber = Math.floor(Math.random()*101);	// generate random number 1 - 100
 	console.log(secretNumber);
 };
